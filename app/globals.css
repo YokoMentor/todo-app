@@ -6,10 +6,8 @@
 }
 
 @theme inline {
-  --color-bg-dark-blue: hsl(218, 23%, 16%);
-  --color-card: hsl(217, 19%, 24%);
-  --color-highlight: hsl(150, 100%, 66%);
-  --color-text-grey: hsl(193, 38%, 86%);
+  --color-bg-dark: hsl(235, 21%, 11%);
+  --color-bg-light: hsl(0, 0%, 98%);
 }
 
 @media (prefers-color-scheme: dark) {

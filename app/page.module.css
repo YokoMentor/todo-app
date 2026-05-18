@@ -1,0 +1,17 @@
+.bg_dark {
+  background-image: url('../public/bg-mobile-dark.jpg');
+}
+
+.bg_light {
+  background-image: url('../public/bg-mobile-light.jpg');
+}
+
+@media (min-width: 768px) {
+  .bg_dark {
+    background-image: url('../public/bg-desktop-dark.jpg');
+  }
+
+  .bg_light {
+    background-image: url('../public/bg-desktop-light.jpg');
+  }
+}
