@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { manrope } from '../ui/fonts';
+import { josefinSans } from '../ui/fonts';
 
 export const metadata: Metadata = {
   title: "todo-app",
@@ -16,7 +16,7 @@ export default function RootLayout({
     <html
       lang="en"
     >
-      <body className={`${manrope.className} min-h-full flex flex-col`}>{children}</body>
+      <body className={`${josefinSans.className} min-h-full flex flex-col`}>{children}</body>
     </html>
   );
 }
