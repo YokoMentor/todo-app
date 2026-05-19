@@ -30,27 +30,36 @@ export default function Home() {
           <input type='text' placeholder='Create a new todo...' className='text-text-dark text-xs focus:outline-none focus:text-hover'/>
         </div>
         <div className='divide-solid divide-disabled divide-y-1 w-full rounded-md overflow-hidden text-xs text-hover'>
-          <label htmlFor="item1" className='flex items-center w-full bg-bg-container h-[48px] has-checked:line-through has-checked:text-disabled cursor-pointer'>
-            <div className='relative flex items-center justify-center'>
-              <input type="checkbox" name="action" id="item1" className="peer w-[20px] h-[20px] ml-5 mr-3 rounded-full appearance-none border border-disabled cursor-pointer" />
-              <span className={`${styles.icon_check} bg-center absolute w-[20px] h-[20px] ml-5 mr-3 rounded-full opacity-0 peer-checked:opacity-100`}></span>
-            </div>
-            Jog around the block 3x
-          </label>
-          <label htmlFor="item2" className='flex items-center w-full bg-bg-container h-[48px] has-checked:line-through has-checked:text-disabled cursor-pointer'>
-            <div className='relative flex items-center justify-center'>
-              <input type="checkbox" name="action" id="item2" className="peer w-[20px] h-[20px] ml-5 mr-3 rounded-full appearance-none border border-disabled cursor-pointer" />
-              <span className={`${styles.icon_check} bg-center absolute w-[20px] h-[20px] ml-5 mr-3 rounded-full opacity-0 peer-checked:opacity-100`}></span>
-            </div>
-            Jog around the block 3x
-          </label>
-          <label htmlFor="item3" className='flex items-center w-full bg-bg-container h-[48px] has-checked:line-through has-checked:text-disabled cursor-pointer'>
-            <div className='relative flex items-center justify-center'>
-              <input type="checkbox" name="action" id="item3" className="peer w-[20px] h-[20px] ml-5 mr-3 rounded-full appearance-none border border-disabled cursor-pointer" />
-              <span className={`${styles.icon_check} bg-center absolute w-[20px] h-[20px] ml-5 mr-3 rounded-full opacity-0 peer-checked:opacity-100`}></span>
-            </div>
-            Jog around the block 3x
-          </label>
+          <div className='flex items-center w-full bg-bg-container h-[48px] has-checked:line-through has-checked:text-disabled cursor-pointer justify-between'>
+            <label htmlFor="item1" className='flex items-center'>
+              <div className='relative flex items-center justify-center'>
+                <input type="checkbox" name="action" id="item1" className="peer w-[20px] h-[20px] ml-5 mr-3 rounded-full appearance-none border border-disabled cursor-pointer" />
+                <span className={`${styles.icon_check} bg-center absolute w-[20px] h-[20px] ml-5 mr-3 rounded-full opacity-0 peer-checked:opacity-100`}></span>
+              </div>
+              Jog around the block 3x
+            </label>
+            <button className={`${styles.icon_cross} w-[12px] h-[12px] bg-no-repeat bg-center bg-contain mr-5`}></button>
+          </div>
+          <div  className='flex items-center w-full bg-bg-container h-[48px] has-checked:line-through has-checked:text-disabled cursor-pointer justify-between'>
+            <label htmlFor="item2" className='flex items-center'>
+              <div className='relative flex items-center justify-center'>
+                <input type="checkbox" name="action" id="item2" className="peer w-[20px] h-[20px] ml-5 mr-3 rounded-full appearance-none border border-disabled cursor-pointer" />
+                <span className={`${styles.icon_check} bg-center absolute w-[20px] h-[20px] ml-5 mr-3 rounded-full opacity-0 peer-checked:opacity-100`}></span>
+              </div>
+              Jog around the block 3x
+            </label>
+            <button className={`${styles.icon_cross} w-[12px] h-[12px] bg-no-repeat bg-center bg-contain mr-5`}></button>
+          </div>
+          <div  className='flex items-center w-full bg-bg-container h-[48px] has-checked:line-through has-checked:text-disabled cursor-pointer justify-between'>
+            <label htmlFor="item3" className='flex items-center'>
+              <div className='relative flex items-center justify-center'>
+                <input type="checkbox" name="action" id="item3" className="peer w-[20px] h-[20px] ml-5 mr-3 rounded-full appearance-none border border-disabled cursor-pointer" />
+                <span className={`${styles.icon_check} bg-center absolute w-[20px] h-[20px] ml-5 mr-3 rounded-full opacity-0 peer-checked:opacity-100`}></span>
+              </div>
+              Jog around the block 3x
+            </label>
+            <button className={`${styles.icon_cross} w-[12px] h-[12px] bg-no-repeat bg-center bg-contain mr-5`}></button>
+          </div>
         </div>
       </div>
     </div>
