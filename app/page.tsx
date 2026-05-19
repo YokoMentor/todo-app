@@ -29,6 +29,14 @@ export default function Home() {
           <div className='border border-disabled rounded-full w-[20px] h-[20px] ml-5 mr-3'></div>
           <input type='text' placeholder='Create a new todo...' className='text-text-dark text-xs focus:outline-none focus:text-hover'/>
         </div>
+        <label htmlFor="toDoList" className='flex items-center w-full bg-bg-container rounded-md h-[48px] text-hover text-xs has-checked:line-through has-checked:text-disabled cursor-pointer mt-4'>
+          <div className='relative flex items-center justify-center'>
+            <input type="radio" id="toDoList" name="color" className="peer w-[20px] h-[20px] ml-5 mr-3 rounded-full appearance-none border border-disabled cursor-pointer checked:border-white" />
+            <span className={`${styles.icon_check} bg-center absolute w-[20px] h-[20px] ml-5 mr-3 rounded-full opacity-0 peer-checked:opacity-100`}></span>
+          </div>
+          Jog around the block 3x
+        </label>
+        <hr className="solid"/>
       </div>
     </div>
   );

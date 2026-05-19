@@ -15,7 +15,8 @@
 }
 
 .icon_check {
-  background-image: url('../public/icon-check.svg');
+  background-image: url('../public/icon-check.svg'), linear-gradient(to bottom right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  background-repeat: no-repeat;
 }
 
 .icon_cross {
