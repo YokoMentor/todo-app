@@ -8,6 +8,10 @@
 @theme inline {
   --color-bg-dark: hsl(235, 21%, 11%);
   --color-bg-light: hsl(0, 0%, 98%);
+  --color-bg-container: hsl(235, 24%, 19%);
+  --color-text-dark: hsl(234, 39%, 85%);
+  --color-disabled: hsl(237, 14%, 26%);
+  --color-hover: hsl(236, 33%, 92%);
 }
 
 @media (prefers-color-scheme: dark) {
