@@ -8,8 +8,7 @@ export default function Home() {
     const [lightBg, setLightBg] = useState(false); 
     const [themeSwitch, setThemeSwitch] = useState(true);
     
-    function handleThemeSwitcher(event: ToggleEvent) {
-    event.preventDefault();
+    function handleThemeSwitcher() {
     if (themeSwitch) {
       setDarkBg(true);
       setLightBg(false);
@@ -21,12 +20,12 @@ export default function Home() {
   }
 
   return (
-    <div className={`${styles.bg_dark} flex flex-col min-h-screen justify-center items-center bg-bg-dark bg-no-repeat bg-contain`}>
+    <div className={`${darkBg ? styles.bg_dark : styles.bg_light} flex flex-col min-h-screen justify-center items-center bg-bg-dark bg-no-repeat bg-contain`}>
       <div className='flex flex-col justify-center items-center w-[328px]'>
         <div className='flex justify-between items-baseline w-full'>
           <h1 className='font-bold text-[28px] text-white tracking-[.32em]'>TODO</h1>
-          {darkBg && (<div className={`${styles.icon_moon} w-[20px] h-[20px] bg-no-repeat bg-center bg-contain`} onClick={handleThemeSwitcher}></div>)}
-          {lightBg && (<div className={`${styles.icon_sun} w-[20px] h-[20px] bg-no-repeat bg-center bg-contain`} onClick={handleThemeSwitcher}></div>)}  
+          {darkBg && (<button className={`${styles.icon_moon} w-[20px] h-[20px] bg-no-repeat bg-center bg-contain`} onClick={handleThemeSwitcher}></button>)}
+          {lightBg && (<button className={`${styles.icon_sun} w-[20px] h-[20px] bg-no-repeat bg-center bg-contain`} onClick={handleThemeSwitcher}></button>)}  
         </div>
       </div>
     </div>
