@@ -1,0 +1,6 @@
+CREATE TABLE todo_items(
+  id TEXT PRIMARY KEY,
+  item TEXT,
+  status TEXT,
+  created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
