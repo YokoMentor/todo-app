@@ -1,4 +1,4 @@
-CREATE TABLE todo_items(
+CREATE TABLE TODO_ITEMS(
   id TEXT PRIMARY KEY,
   item TEXT,
   status TEXT,
