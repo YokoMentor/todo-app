@@ -15,26 +15,26 @@ export interface TodoList {
 
 export function insertTodo(item: string): TodoList {
     const id = crypto.randomUUID()
-    const todo: TodoList = {id: id, item: item, status: status, created: created};
-    const query = "insert into TODO_ITEMS (id, item, status, created) values (?, ?, ?, ?)"
-    runQuery(todoDB, query, [todo.id, todo.item, todo.status, todo.created])
+    const todo: TodoList = {id: id, item: item, status: 'Active', created: ''};
+    const query = "insert into TODO_ITEM (id, item, status) values (?, ?, ?)"
+    runQuery(todoDB, query, [todo.id, todo.item, todo.status])
     return todo;
 }
 
 export function fetchTodo(): TodoList[] {
-    return fetchAll(todoDB, "select id, item, status, created from TODO_ITEMS", []) as TodoList[];
+    return fetchAll(todoDB, "select id, item, status, created from TODO_ITEM", []) as TodoList[];
 }
 
-export function deleteTodo(item: string) {
-  runQuery(todoDB, "delete from TODO_ITEMS where item = ?", [item]);
+export function deleteTodo(id: string) {
+  runQuery(todoDB, "delete from TODO_ITEM where id = ?", [id]);
 } 
+
+export function updateTodo(id: string, status: string) {
+  runQuery(todoDB, "update TODO_ITEM SET status = ? where id = ?", [status, id]);
+}
 
 export const fetchAll = (db: InstanceType<typeof Database>, sql: string, params: any[] = []) => {
   return db.prepare(sql).all(...params);
-};
-
-export const fetchFirst = (db: InstanceType<typeof Database>, sql: string, params: any[] = []) => {
-  return db.prepare(sql).get(...params);
 };
 
 export const runQuery = (
