@@ -69,11 +69,11 @@ export default function Page() {
           <div className='border border-disabled rounded-full w-[20px] h-[20px] ml-5 mr-3'></div>
           <input  type="text" placeholder='Create a new todo...' value={todoItem} className='text-text-dark text-xs focus:outline-none focus:text-hover' onChange={handleTodoItemChange} />
         </form>
-        <div className='divide-solid divide-disabled divide-y-1 w-full rounded-md overflow-hidden text-xs text-hover'>
-          <ul>
+        <div className='w-full rounded-md overflow-hidden text-xs text-hover divide-disabled divide-y-1'>
+          <ul className='divide-disabled divide-y-1'>
             {toDoList.map((todo, index) => (
               <li key={index}>
-                <div className='flex items-center w-full bg-bg-container h-[48px] has-checked:line-through has-checked:text-disabled cursor-pointer justify-between'>
+                <div className='flex items-center w-full bg-bg-container h-[52px] has-checked:line-through has-checked:text-disabled cursor-pointer justify-between'>
                   <label htmlFor={index.toString()} className='flex items-center'>
                     <div className='relative flex items-center justify-center'>
                       <input type="checkbox" checked={(todo.status!=='Active')} onChange={_=>toggleChecked(todo.id, todo.status)} name="action" id={index.toString()} className="peer w-[20px] h-[20px] ml-5 mr-3 rounded-full appearance-none border border-disabled cursor-pointer" />
@@ -86,6 +86,10 @@ export default function Page() {
               </li>
             ))}
           </ul>
+          <div className='flex items-center w-full bg-bg-container h-[52px] has-checked:line-through has-checked:text-disabled cursor-pointer justify-between'>
+            <button className='ml-5'>5 items left</button>
+            <button className='mr-5'>Clear Completed</button>
+          </div>
         </div>
       </div>
     </div>
