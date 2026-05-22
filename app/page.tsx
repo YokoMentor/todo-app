@@ -5,8 +5,8 @@ import { addToList, getTodos, deleteTodoItem, updateTodoItem } from './actions'
 import { TodoList } from './src/services/database'
 
 export default function Page() {
-  const darkBgStyle = `${styles.bg_dark} flex flex-col min-h-screen justify-center items-center bg-bg-dark bg-no-repeat bg-contain`;
-  const lightBgStyle = `${styles.bg_light} flex flex-col min-h-screen justify-center items-center bg-bg-light bg-no-repeat bg-contain`;
+  const darkBgStyle = `${styles.bg_dark} relative flex flex-col min-h-screen justify-center items-center bg-bg-dark bg-no-repeat bg-contain`;
+  const lightBgStyle = `${styles.bg_light} relative flex flex-col min-h-screen justify-center items-center bg-bg-light bg-no-repeat bg-contain`;
 
   const [darkTheme, setDarkTheme] = useState(true);
   const [themeSwitch, setThemeSwitch] = useState(true);
@@ -60,7 +60,7 @@ export default function Page() {
 
   return (
     <div className={`${darkTheme ? darkBgStyle : lightBgStyle}`}>
-      <div className='flex flex-col justify-center items-center w-[328px]'>
+      <div className='absolute top-10 flex flex-col justify-center items-center w-[328px]'>
         <div className='flex justify-between items-baseline w-full mb-6'>
           <h1 className='font-bold text-[28px] text-white tracking-[.32em]'>TODO</h1>
           <button className={`${darkTheme ? styles.icon_moon : styles.icon_sun} w-[20px] h-[20px] bg-no-repeat bg-center bg-contain`} onClick={handleThemeSwitcher}></button>
