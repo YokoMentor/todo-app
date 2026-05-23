@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, ChangeEvent } from 'react';
 import styles from './page.module.css';
-import { addToList, getTodos, deleteTodoItem, updateTodoItem } from './actions'
+import { addToList, getTodos, deleteTodoItem, countItemsLeft, clearCompletedItems, updateTodoItem } from './actions'
 import { TodoList } from './src/services/database'
 
 export default function Page() {
@@ -12,15 +12,17 @@ export default function Page() {
   const [themeSwitch, setThemeSwitch] = useState(true);
   const [todoItem, setTodoItem] = useState('');
   const [toDoList, setTodoList] = useState<TodoList[]>([]);
+  const [activeLeft, setActiveLeft] = useState(3);
 
   useEffect(() => {
     const init = async () =>  {
     const items = await getTodos();
     setTodoList(items);
+    handleCountItemsLeft();
   }
   init();
   }, [])
-  
+
   function handleThemeSwitcher() {
     if (themeSwitch) {
       setDarkTheme(true);
@@ -42,6 +44,7 @@ export default function Page() {
       const items = await getTodos();
       setTodoList(items);
       setTodoItem(''); //clearing item after submit
+      handleCountItemsLeft();
     }
     init();
     }
@@ -50,12 +53,26 @@ export default function Page() {
     await deleteTodoItem(id);
     const items = await getTodos();
     setTodoList(items);
+    handleCountItemsLeft();
+  };
+
+  async function handleCountItemsLeft() {
+    const items = await countItemsLeft();
+    setActiveLeft(items);
+  };
+
+  async function handleClearCompleted(status: string) {
+    await clearCompletedItems(status);
+    const items = await getTodos();
+    setTodoList(items);
+    handleCountItemsLeft();
   };
 
   async function toggleChecked(id: string, status: string) {
     await updateTodoItem(id, status);
     const items = await getTodos();
     setTodoList(items);
+    handleCountItemsLeft();
   }
 
   return (
@@ -67,7 +84,7 @@ export default function Page() {
         </div>
         <form className='flex items-center w-full bg-bg-container rounded-md h-[48px] mb-4' onSubmit={handleSubmit}>
           <div className='border border-primary-purple rounded-full w-[20px] h-[20px] ml-5 mr-3'></div>
-          <input  type="text" placeholder='Create a new todo...' value={todoItem} className='placeholder-txt-default text-xs focus:outline-none focus:placeholder-txt-hover' onChange={handleTodoItemChange} />
+          <input  type="text" placeholder='Create a new todo...' value={todoItem} className='placeholder-txt-default text-xs text-txt-hover focus:outline-none' onChange={handleTodoItemChange} />
         </form>
         <div className='w-full rounded-md overflow-hidden text-xs divide-primary-purple divide-y-1'>
           <ul className='divide-primary-purple divide-y-1'>
@@ -87,8 +104,8 @@ export default function Page() {
             ))}
           </ul>
           <div className='flex items-center w-full bg-bg-container h-[52px] has-checked:line-through has-checked:text-primary-purple justify-between text-txt-default'>
-            <button className='ml-5'>5 items left</button>
-            <button className='mr-5 focus:text-txt-active hover:text-txt-hover cursor-pointer'>Clear Completed</button>
+            <button className='ml-5'>{activeLeft} items left</button>
+            <button className='mr-5 focus:text-txt-active hover:text-txt-hover cursor-pointer' onClick={handleClearCompleted}>Clear Completed</button>
           </div>
         </div>
         <div className='rounded-md text-sm text-txt-default flex items-center justify-center w-full bg-bg-container h-[52px] mt-4'>
