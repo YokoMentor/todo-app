@@ -96,6 +96,9 @@ export default function Page() {
           <button className='mx-5 text-txt-active hover:text-txt-hover cursor-pointer'>Active</button>
           <button className='focus:text-txt-active hover:text-txt-hover cursor-pointer'>Completed</button>
         </div>
+        <div className='text-sm text-txt-default flex items-center justify-center w-full h-[52px] mt-4'>
+          Drag and drop to reorder list
+        </div>
       </div>
     </div>
   );
