@@ -5,8 +5,19 @@ export const addToList = async (item: string): Promise<TodoList> => {
     return insertTodo(item)
   }
 
-export const getTodos = async(): Promise<TodoList[]> => {
-  return fetchTodo();
+export const getTodos = async(status: string): Promise<TodoList[]> => {
+  const items = fetchTodo();
+
+  if(status === 'All'){
+    return items;
+  } else if (status === 'Active') {
+    const activeItems = items.filter(item => item.status === 'Active');
+    return activeItems;
+  } else if(status === 'Completed') {
+    const completedItems = items.filter(item => item.status === 'Completed');
+    return completedItems;
+  }
+  return [];
 }
 
 export const deleteTodoItem = async(id: string) => {
@@ -28,3 +39,6 @@ export const updateTodoItem = async(id: string, status: string) => {
     updateTodo(id, 'Active')
   }
 }
+
+
+

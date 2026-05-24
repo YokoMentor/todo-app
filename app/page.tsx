@@ -13,10 +13,11 @@ export default function Page() {
   const [todoItem, setTodoItem] = useState('');
   const [toDoList, setTodoList] = useState<TodoList[]>([]);
   const [activeLeft, setActiveLeft] = useState(3);
+  const [fetchTodoStatus, setFetchTodoStatus] = useState('All');
 
   useEffect(() => {
     const init = async () =>  {
-    const items = await getTodos();
+    const items = await getTodos(fetchTodoStatus);
     setTodoList(items);
     handleCountItemsLeft();
   }
@@ -41,7 +42,7 @@ export default function Page() {
     event.preventDefault();
     const init = async () =>  {
       await addToList(todoItem);
-      const items = await getTodos();
+      const items = await getTodos(fetchTodoStatus);
       setTodoList(items);
       setTodoItem(''); //clearing item after submit
       handleCountItemsLeft();
@@ -49,9 +50,16 @@ export default function Page() {
     init();
     }
 
+  async function toggleChecked(id: string, status: string) {
+    await updateTodoItem(id, status);
+    const items = await getTodos(fetchTodoStatus);
+    setTodoList(items);
+    handleCountItemsLeft();
+  }
+
   async function handleDelete(id: string) {
     await deleteTodoItem(id);
-    const items = await getTodos();
+    const items = await getTodos(fetchTodoStatus);
     setTodoList(items);
     handleCountItemsLeft();
   };
@@ -63,16 +71,27 @@ export default function Page() {
 
   async function handleClearCompleted(status: string) {
     await clearCompletedItems(status);
-    const items = await getTodos();
+    const items = await getTodos(fetchTodoStatus);
     setTodoList(items);
     handleCountItemsLeft();
   };
 
-  async function toggleChecked(id: string, status: string) {
-    await updateTodoItem(id, status);
-    const items = await getTodos();
+  async function handleShowAll() {
+    setFetchTodoStatus('All');
+    const items = await getTodos('All');
     setTodoList(items);
-    handleCountItemsLeft();
+  }
+
+  async function handleShowActive() {
+    setFetchTodoStatus('Active');
+    const items = await getTodos('Active');
+    setTodoList(items);
+  }
+
+  async function handleShowCompleted() {
+    setFetchTodoStatus('Completed');
+    const items = await getTodos('Completed');
+    setTodoList(items);
   }
 
   return (
@@ -109,9 +128,9 @@ export default function Page() {
           </div>
         </div>
         <div className='rounded-md text-sm text-txt-default flex items-center justify-center w-full bg-bg-container h-[52px] mt-4'>
-          <button className='focus:text-txt-active hover:text-txt-hover cursor-pointer'>All</button>
-          <button className='mx-5 text-txt-active hover:text-txt-hover cursor-pointer'>Active</button>
-          <button className='focus:text-txt-active hover:text-txt-hover cursor-pointer'>Completed</button>
+          <button className='focus:text-txt-active hover:text-txt-hover cursor-pointer outline-none' autoFocus={fetchTodoStatus==='All'} onClick={handleShowAll}>All</button>
+          <button className='mx-5 focus:text-txt-active hover:text-txt-hover cursor-pointer' autoFocus={fetchTodoStatus==='Active'} onClick={handleShowActive}>Active</button>
+          <button className='focus:text-txt-active hover:text-txt-hover cursor-pointer' autoFocus={fetchTodoStatus==='Completed'} onClick={handleShowCompleted}>Completed</button>
         </div>
         <div className='text-sm text-txt-default flex items-center justify-center w-full h-[52px] mt-4'>
           Drag and drop to reorder list

@@ -12,6 +12,7 @@
   --color-primary-purple: hsl(233, 14%, 35%);
   --color-txt-default: hsl(235, 16%, 43%);
   --color-txt-hover: hsl(236, 33%, 92%);
+  --color-txt-active: hsl(220, 98%, 61%);
 }
 
 @media (prefers-color-scheme: dark) {
