@@ -96,43 +96,48 @@ export default function Page() {
 
   return (
     <div className={`${darkTheme ? darkBgStyle : lightBgStyle}`}>
-      <div className='absolute top-10 flex flex-col justify-center items-center w-[328px]'>
-        <div className='flex justify-between items-baseline w-full mb-6'>
-          <h1 className='font-bold text-[28px] text-white tracking-[.32em]'>TODO</h1>
-          <button className={`${darkTheme ? styles.icon_moon : styles.icon_sun} w-[20px] h-[20px] bg-no-repeat bg-center bg-contain cursor-pointer`} onClick={handleThemeSwitcher}></button>
+      <div className='absolute top-10 md:top-17 flex flex-col justify-center items-center w-[328px] md:w-[540px]'>
+        <div className='flex justify-between items-baseline w-full mb-6 md:mb-8'>
+          <h1 className='font-bold text-[27px] md:text-[40px] text-white tracking-[.36em]'>TODO</h1>
+          <button className={`${darkTheme ? styles.icon_sun : styles.icon_moon} w-[20px] h-[20px] md:w-[27px] md:h-[27px] bg-no-repeat bg-center bg-contain cursor-pointer`} onClick={handleThemeSwitcher}></button>
         </div>
-        <form className='flex items-center w-full bg-bg-container rounded-md h-[48px] mb-4' onSubmit={handleSubmit}>
-          <div className='border border-primary-purple rounded-full w-[20px] h-[20px] ml-5 mr-3'></div>
-          <input  type="text" placeholder='Create a new todo...' value={todoItem} className='placeholder-txt-default text-xs text-txt-hover focus:outline-none' onChange={handleTodoItemChange} />
+        <form className='flex items-center w-full bg-bg-container rounded-md h-[48px] md:h-[64px] mb-4 md:mb-6' onSubmit={handleSubmit}>
+          <div className='border border-primary-purple rounded-full w-[20px] h-[20px] md:w-[25px] md:h-[25px] ml-5 md:ml-6 mr-3 md:mr-6'></div>
+          <input  type="text" placeholder='Create a new todo...' value={todoItem} className='placeholder-txt-default text-xs md:text-lg text-txt-hover focus:outline-none' onChange={handleTodoItemChange} />
         </form>
-        <div className='w-full rounded-md overflow-hidden text-xs divide-primary-purple divide-y-1'>
+        <div className='w-full rounded-md overflow-hidden text-xs md:text-lg divide-primary-purple divide-y-1'>
           <ul className='divide-primary-purple divide-y-1'>
             {toDoList.map((todo, index) => (
               <li key={index}>
-                <div className='flex items-center w-full bg-bg-container h-[52px] text-txt-hover has-checked:line-through has-checked:text-primary-purple justify-between'>
+                <div className='flex items-center w-full bg-bg-container h-[52px] md:h-[64px] text-txt-hover has-checked:line-through has-checked:text-primary-purple justify-between'>
                   <label htmlFor={index.toString()} className='flex items-center'>
                     <div className='relative flex items-center justify-center cursor-pointer'>
-                      <input type="checkbox" checked={(todo.status!=='Active')} onChange={_=>toggleChecked(todo.id, todo.status)} name="action" id={index.toString()} className="peer w-[20px] h-[20px] ml-5 mr-3 rounded-full appearance-none border border-primary-purple" />
-                      <span className={`${styles.icon_check} bg-center absolute w-[20px] h-[20px] ml-5 mr-3 rounded-full opacity-0 peer-checked:opacity-100`}></span>
+                      <input type="checkbox" checked={(todo.status!=='Active')} onChange={_=>toggleChecked(todo.id, todo.status)} name="action" id={index.toString()} className='peer w-[20px] h-[20px] md:w-[25px] md:h-[25px] ml-5 md:ml-6  mr-3 md:mr-6 rounded-full appearance-none border border-primary-purple hover:border-white' />
+                      <span className={`${styles.icon_check} bg-center absolute w-[20px] h-[20px] md:w-[25px] md:h-[25px] ml-5 md:ml-6 mr-3 md:mr-6 rounded-full opacity-0 peer-checked:opacity-100`}></span>
                     </div>
                     {todo.item}
                   </label>
-                  <button className={`${styles.icon_cross} w-[12px] h-[12px] bg-no-repeat bg-center bg-contain mr-5 cursor-pointer`} onClick={_=>handleDelete(todo.id)}></button>
+                  <button className={`${styles.icon_cross} visible md:invisible w-[12px] h-[12px] bg-no-repeat bg-center bg-contain mr-5 cursor-pointer`} onClick={_=>handleDelete(todo.id)}></button>
                 </div>
               </li>
             ))}
           </ul>
           <div className='flex items-center w-full bg-bg-container h-[52px] has-checked:line-through has-checked:text-primary-purple justify-between text-txt-default'>
-            <button className='ml-5'>{activeLeft} items left</button>
-            <button className='mr-5 focus:text-txt-active hover:text-txt-hover cursor-pointer' onClick={handleClearCompleted}>Clear Completed</button>
+            <button className='ml-5 md:ml-6 text-xs md:w-[180px] text-left'>{activeLeft} items left</button>
+            <div className='invisible md:visible rounded-md text-sm text-txt-default font-bold flex items-center justify-center w-[0px] md:w-[180px]'>
+              <button className='focus:text-txt-active hover:text-txt-hover cursor-pointer outline-none' autoFocus={fetchTodoStatus==='All'} onClick={handleShowAll}>All</button>
+              <button className='mx-5 focus:text-txt-active hover:text-txt-hover cursor-pointer' autoFocus={fetchTodoStatus==='Active'} onClick={handleShowActive}>Active</button>
+              <button className='focus:text-txt-active hover:text-txt-hover cursor-pointer' autoFocus={fetchTodoStatus==='Completed'} onClick={handleShowCompleted}>Completed</button>
+            </div>
+            <button className='mr-5 md:mr-6 text-xs focus:text-txt-active hover:text-txt-hover cursor-pointer md:w-[180px] text-right' onClick={handleClearCompleted}>Clear Completed</button>
           </div>
         </div>
-        <div className='rounded-md text-sm text-txt-default flex items-center justify-center w-full bg-bg-container h-[52px] mt-4'>
+        <div className='visible md:invisible rounded-md text-sm text-txt-default font-bold flex items-center justify-center w-full bg-bg-container h-[49px] md:h-[0px] mt-4'>
           <button className='focus:text-txt-active hover:text-txt-hover cursor-pointer outline-none' autoFocus={fetchTodoStatus==='All'} onClick={handleShowAll}>All</button>
           <button className='mx-5 focus:text-txt-active hover:text-txt-hover cursor-pointer' autoFocus={fetchTodoStatus==='Active'} onClick={handleShowActive}>Active</button>
           <button className='focus:text-txt-active hover:text-txt-hover cursor-pointer' autoFocus={fetchTodoStatus==='Completed'} onClick={handleShowCompleted}>Completed</button>
         </div>
-        <div className='text-sm text-txt-default flex items-center justify-center w-full h-[52px] mt-4'>
+        <div className='text-sm text-txt-default flex items-center justify-center w-full h-[52px] mt-6 md:mt-3'>
           Drag and drop to reorder list
         </div>
       </div>
