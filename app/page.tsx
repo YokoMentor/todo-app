@@ -96,7 +96,7 @@ export default function Page() {
 
   return (
     <div className={`${darkTheme ? darkBgStyle : lightBgStyle}`}>
-      <div className='absolute top-10 md:top-17 flex flex-col justify-center items-center w-[328px] md:w-[540px]'>
+      <div className='absolute top-11 md:top-17 flex flex-col justify-center items-center w-[328px] md:w-[540px]'>
         <div className='flex justify-between items-baseline w-full mb-6 md:mb-8'>
           <h1 className='font-bold text-[27px] md:text-[40px] text-white tracking-[.36em]'>TODO</h1>
           <button className={`${darkTheme ? styles.icon_sun : styles.icon_moon} w-[20px] h-[20px] md:w-[27px] md:h-[27px] bg-no-repeat bg-center bg-contain cursor-pointer`} onClick={handleThemeSwitcher}></button>
