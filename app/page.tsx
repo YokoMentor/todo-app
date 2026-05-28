@@ -151,9 +151,9 @@ export default function Page() {
           </div>
         </div>
         <div className={`visible md:invisible rounded-md text-sm ${darkTheme ? darkTxt : lightTxt} font-bold flex items-center justify-center w-full ${darkTheme ? darkContainerBg : lightContainerBg} h-[49px] md:h-[0px] mt-4`}>
-          <button className={`focus:text-txt-active ${darkTheme ? darkHover : lightHover} cursor-pointer outline-none`} autoFocus={fetchTodoStatus==='All'} onClick={handleShowAll}>All</button>
-          <button className={`mx-5 focus:text-txt-active ${darkTheme ? darkHover : lightHover} cursor-pointer`} autoFocus={fetchTodoStatus==='Active'} onClick={handleShowActive}>Active</button>
-          <button className={`focus:text-txt-active ${darkTheme ? darkHover : lightHover} cursor-pointer`} autoFocus={fetchTodoStatus==='Completed'} onClick={handleShowCompleted}>Completed</button>
+          <button className={`focus:text-txt-active cursor-pointer outline-none`} autoFocus={fetchTodoStatus==='All'} onClick={handleShowAll}>All</button>
+          <button className={`mx-5 focus:text-txt-active cursor-pointer`} autoFocus={fetchTodoStatus==='Active'} onClick={handleShowActive}>Active</button>
+          <button className={`focus:text-txt-active cursor-pointer`} autoFocus={fetchTodoStatus==='Completed'} onClick={handleShowCompleted}>Completed</button>
         </div>
         <div className={`text-sm ${darkTheme ? darkTxt : lightTxt} flex items-center justify-center w-full h-[52px] mt-6 md:mt-3`}>
           Drag and drop to reorder list
