@@ -7,6 +7,24 @@ import { TodoList } from './src/services/database'
 export default function Page() {
   const darkBgStyle = `${styles.bg_dark} relative flex flex-col min-h-screen justify-center items-center bg-bg-dark bg-no-repeat bg-contain`;
   const lightBgStyle = `${styles.bg_light} relative flex flex-col min-h-screen justify-center items-center bg-bg-light bg-no-repeat bg-contain`;
+  const darkContainerBg = 'bg-container-dark';
+  const lightContainerBg = 'bg-container-light'
+  const darkDivider = 'divide-primary-purple';
+  const lightDivider = 'divide-primary-grey';
+  const darkBorder = 'border-primary-purple';
+  const lightBorder = 'border-primary-grey';
+  const darkTxtCompleted = 'has-checked:text-primary-purple';
+  const lightTxtCompleted = 'has-checked:text-primary-grey';
+  const darkTxtActive = 'text-txt-hover';
+  const lightTxtActive = 'text-primary-purple';
+  const darkTxt = 'text-txt-dark';
+  const lightTxt = 'text-txt-light';
+  const darkPlaceholder = 'placeholder:text-txt-dark';
+  const lightPlaceholder = 'placeholder:text-txt-light';
+  const darkHover = 'hover:text-txt-hover';
+  const lightHover = 'hover:text-primary-purple';
+  const darkInput = 'text-txt-hover';
+  const lightInput = 'text-primary-purple';
 
   const [darkTheme, setDarkTheme] = useState(true);
   const [themeSwitch, setThemeSwitch] = useState(true);
@@ -101,18 +119,18 @@ export default function Page() {
           <h1 className='font-bold text-[27px] md:text-[40px] text-white tracking-[.36em]'>TODO</h1>
           <button className={`${darkTheme ? styles.icon_sun : styles.icon_moon} w-[20px] h-[20px] md:w-[27px] md:h-[27px] bg-no-repeat bg-center bg-contain cursor-pointer`} onClick={handleThemeSwitcher}></button>
         </div>
-        <form className='flex items-center w-full bg-bg-container rounded-md h-[48px] md:h-[64px] mb-4 md:mb-6' onSubmit={handleSubmit}>
-          <div className='border border-primary-purple rounded-full w-[20px] h-[20px] md:w-[25px] md:h-[25px] ml-5 md:ml-6 mr-3 md:mr-6'></div>
-          <input  type="text" placeholder='Create a new todo...' value={todoItem} className='placeholder-txt-default text-xs md:text-lg text-txt-hover focus:outline-none' onChange={handleTodoItemChange} />
+        <form className={`flex items-center w-full ${darkTheme ? darkContainerBg : lightContainerBg} rounded-md h-[48px] md:h-[64px] mb-4 md:mb-6`} onSubmit={handleSubmit}>
+          <div className={`border ${darkTheme ? darkBorder : lightBorder} rounded-full w-[20px] h-[20px] md:w-[25px] md:h-[25px] ml-5 md:ml-6 mr-3 md:mr-6`}></div>
+          <input  type="text" placeholder='Create a new todo...' value={todoItem} className={`${darkTheme ? darkPlaceholder : lightPlaceholder} text-xs ${darkTheme ? darkInput : lightInput} md:text-lg focus:outline-none`} onChange={handleTodoItemChange} />
         </form>
-        <div className='w-full rounded-md overflow-hidden text-xs md:text-lg divide-primary-purple divide-y-1'>
-          <ul className='divide-primary-purple divide-y-1'>
+        <div className={`w-full rounded-md overflow-hidden text-xs md:text-lg ${darkTheme ? darkDivider : lightDivider} divide-y-1`}>
+          <ul className={`${darkTheme ? darkDivider : lightDivider} divide-y-1`}>
             {toDoList.map((todo, index) => (
               <li key={index}>
-                <div className='flex items-center w-full bg-bg-container h-[52px] md:h-[64px] text-txt-hover has-checked:line-through has-checked:text-primary-purple justify-between'>
+                <div className={`flex items-center w-full ${darkTheme ? darkContainerBg : lightContainerBg} h-[52px] md:h-[64px] ${darkTheme ? darkTxtActive : lightTxtActive} has-checked:line-through ${darkTheme ? darkTxtCompleted : lightTxtCompleted} justify-between`}>
                   <label htmlFor={index.toString()} className='flex items-center'>
                     <div className='relative flex items-center justify-center cursor-pointer'>
-                      <input type="checkbox" checked={(todo.status!=='Active')} onChange={_=>toggleChecked(todo.id, todo.status)} name="action" id={index.toString()} className='peer w-[20px] h-[20px] md:w-[25px] md:h-[25px] ml-5 md:ml-6  mr-3 md:mr-6 rounded-full appearance-none border border-primary-purple hover:border-purple' />
+                      <input type="checkbox" checked={(todo.status!=='Active')} onChange={_=>toggleChecked(todo.id, todo.status)} name="action" id={index.toString()} className={`peer w-[20px] h-[20px] md:w-[25px] md:h-[25px] ml-5 md:ml-6  mr-3 md:mr-6 rounded-full appearance-none border ${darkTheme ? darkBorder : lightBorder} hover:border-purple`}/>
                       <span className={`${styles.icon_check} bg-center absolute w-[20px] h-[20px] md:w-[25px] md:h-[25px] ml-5 md:ml-6 mr-3 md:mr-6 rounded-full opacity-0 peer-checked:opacity-100`}></span>
                     </div>
                     {todo.item}
@@ -122,22 +140,22 @@ export default function Page() {
               </li>
             ))}
           </ul>
-          <div className='flex items-center w-full bg-bg-container h-[52px] has-checked:line-through has-checked:text-primary-purple justify-between text-txt-default'>
+          <div className={`flex items-center w-full ${darkTheme ? darkContainerBg : lightContainerBg} h-[52px] has-checked:line-through ${darkTheme ? darkTxtCompleted : lightTxtCompleted} justify-between ${darkTheme ? darkTxt : lightTxt}`}>
             <button className='ml-5 md:ml-6 text-xs md:w-[180px] text-left'>{activeLeft} items left</button>
-            <div className='invisible md:visible rounded-md text-sm text-txt-default font-bold flex items-center justify-center w-[0px] md:w-[180px]'>
-              <button className='focus:text-txt-active hover:text-txt-hover cursor-pointer outline-none' autoFocus={fetchTodoStatus==='All'} onClick={handleShowAll}>All</button>
-              <button className='mx-5 focus:text-txt-active hover:text-txt-hover cursor-pointer' autoFocus={fetchTodoStatus==='Active'} onClick={handleShowActive}>Active</button>
-              <button className='focus:text-txt-active hover:text-txt-hover cursor-pointer' autoFocus={fetchTodoStatus==='Completed'} onClick={handleShowCompleted}>Completed</button>
+            <div className={`invisible md:visible rounded-md text-sm ${darkTheme ? darkTxt : lightTxt} font-bold flex items-center justify-center w-[0px] md:w-[180px]`}>
+              <button className={`focus:text-txt-active ${darkTheme ? darkHover : lightHover} cursor-pointer outline-none`} autoFocus={fetchTodoStatus==='All'} onClick={handleShowAll}>All</button>
+              <button className={`mx-5 focus:text-txt-active ${darkTheme ? darkHover : lightHover} cursor-pointer`} autoFocus={fetchTodoStatus==='Active'} onClick={handleShowActive}>Active</button>
+              <button className={`focus:text-txt-active ${darkTheme ? darkHover : lightHover} cursor-pointer`} autoFocus={fetchTodoStatus==='Completed'} onClick={handleShowCompleted}>Completed</button>
             </div>
-            <button className='mr-5 md:mr-6 text-xs focus:text-txt-active hover:text-txt-hover cursor-pointer md:w-[180px] text-right' onClick={handleClearCompleted}>Clear Completed</button>
+            <button className={`mr-5 md:mr-6 text-xs focus:text-txt-active ${darkTheme ? darkHover : lightHover} cursor-pointer md:w-[180px] text-right`} onClick={handleClearCompleted}>Clear Completed</button>
           </div>
         </div>
-        <div className='visible md:invisible rounded-md text-sm text-txt-default font-bold flex items-center justify-center w-full bg-bg-container h-[49px] md:h-[0px] mt-4'>
-          <button className='focus:text-txt-active hover:text-txt-hover cursor-pointer outline-none' autoFocus={fetchTodoStatus==='All'} onClick={handleShowAll}>All</button>
-          <button className='mx-5 focus:text-txt-active hover:text-txt-hover cursor-pointer' autoFocus={fetchTodoStatus==='Active'} onClick={handleShowActive}>Active</button>
-          <button className='focus:text-txt-active hover:text-txt-hover cursor-pointer' autoFocus={fetchTodoStatus==='Completed'} onClick={handleShowCompleted}>Completed</button>
+        <div className={`visible md:invisible rounded-md text-sm ${darkTheme ? darkTxt : lightTxt} font-bold flex items-center justify-center w-full ${darkTheme ? darkContainerBg : lightContainerBg} h-[49px] md:h-[0px] mt-4`}>
+          <button className={`focus:text-txt-active ${darkTheme ? darkHover : lightHover} cursor-pointer outline-none`} autoFocus={fetchTodoStatus==='All'} onClick={handleShowAll}>All</button>
+          <button className={`mx-5 focus:text-txt-active ${darkTheme ? darkHover : lightHover} cursor-pointer`} autoFocus={fetchTodoStatus==='Active'} onClick={handleShowActive}>Active</button>
+          <button className={`focus:text-txt-active ${darkTheme ? darkHover : lightHover} cursor-pointer`} autoFocus={fetchTodoStatus==='Completed'} onClick={handleShowCompleted}>Completed</button>
         </div>
-        <div className='text-sm text-txt-default flex items-center justify-center w-full h-[52px] mt-6 md:mt-3'>
+        <div className={`text-sm ${darkTheme ? darkTxt : lightTxt} flex items-center justify-center w-full h-[52px] mt-6 md:mt-3`}>
           Drag and drop to reorder list
         </div>
       </div>
