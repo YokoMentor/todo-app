@@ -133,7 +133,7 @@ export default function Page() {
                     </div>
                     {todo.item}
                   </label>
-                  <button className={`${styles.icon_cross} visible md:invisible w-[12px] h-[12px] bg-no-repeat bg-center bg-contain mr-5 cursor-pointer`} onClick={_=>handleDelete(todo.id)}></button>
+                  <button className={`${styles.icon_cross} w-[12px] h-[12px] md:w-[19px] md:h-[19px] bg-no-repeat bg-center bg-contain mr-5 md:mr-6 cursor-pointer`} onClick={_=>handleDelete(todo.id)}></button>
                 </div>
               </li>
             ))}
