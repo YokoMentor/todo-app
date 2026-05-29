@@ -130,7 +130,7 @@ export default function Page() {
                 <div className={`flex items-center w-full ${darkTheme ? darkContainerBg : lightContainerBg} h-[52px] md:h-[64px] ${darkTheme ? darkTxtActive : lightTxtActive} has-checked:line-through ${darkTheme ? darkTxtCompleted : lightTxtCompleted} justify-between`}>
                   <label htmlFor={index.toString()} className='flex items-center'>
                     <div className='relative flex items-center justify-center cursor-pointer'>
-                      <input type="checkbox" checked={(todo.status!=='Active')} onChange={_=>toggleChecked(todo.id, todo.status)} name="action" id={index.toString()} className={`peer w-[20px] h-[20px] md:w-[25px] md:h-[25px] ml-5 md:ml-6  mr-3 md:mr-6 rounded-full appearance-none border ${darkTheme ? darkBorder : lightBorder} hover:border-purple`}/>
+                      <input type="checkbox" checked={(todo.status!=='Active')} onChange={_=>toggleChecked(todo.id, todo.status)} name="action" id={index.toString()} className={`peer w-[20px] h-[20px] md:w-[25px] md:h-[25px] ml-5 md:ml-6  mr-3 md:mr-6 rounded-full appearance-none border ${darkTheme ? darkBorder : lightBorder} hover:border-checkbox-hover`}/>
                       <span className={`${styles.icon_check} bg-center absolute w-[20px] h-[20px] md:w-[25px] md:h-[25px] ml-5 md:ml-6 mr-3 md:mr-6 rounded-full opacity-0 peer-checked:opacity-100`}></span>
                     </div>
                     {todo.item}

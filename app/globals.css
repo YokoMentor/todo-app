@@ -16,7 +16,7 @@
   --color-txt-dark: hsl(235, 16%, 43%);
   --color-txt-hover: hsl(236, 33%, 92%);
   --color-txt-active: hsl(220, 98%, 61%);
-  --color-purple: hsl(248, 37%, 62%);
+  --color-checkbox-hover: hsl(248, 37%, 62%);
 }
 
 @media (prefers-color-scheme: dark) {
