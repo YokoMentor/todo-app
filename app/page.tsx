@@ -19,12 +19,10 @@ export default function Page() {
   const lightTxtActive = 'text-primary-purple';
   const darkTxt = 'text-txt-dark';
   const lightTxt = 'text-txt-light';
-  const darkPlaceholder = 'placeholder:text-txt-dark';
-  const lightPlaceholder = 'placeholder:text-txt-light';
+  const darkInput = 'placeholder:text-txt-dark text-txt-hover';
+  const lightInput = 'placeholder:text-txt-light text-primary-purple';
   const darkHover = 'hover:text-txt-hover';
   const lightHover = 'hover:text-primary-purple';
-  const darkInput = 'text-txt-hover';
-  const lightInput = 'text-primary-purple';
 
   const [darkTheme, setDarkTheme] = useState(true);
   const [themeSwitch, setThemeSwitch] = useState(true);
@@ -121,7 +119,7 @@ export default function Page() {
         </div>
         <form className={`flex items-center w-full ${darkTheme ? darkContainerBg : lightContainerBg} rounded-md h-[48px] md:h-[64px] mb-4 md:mb-6`} onSubmit={handleSubmit}>
           <div className={`border ${darkTheme ? darkBorder : lightBorder} rounded-full w-[20px] h-[20px] md:w-[25px] md:h-[25px] ml-5 md:ml-6 mr-3 md:mr-6`}></div>
-          <input  type="text" placeholder='Create a new todo...' value={todoItem} className={`${darkTheme ? darkPlaceholder : lightPlaceholder} text-xs ${darkTheme ? darkInput : lightInput} md:text-lg focus:outline-none`} onChange={handleTodoItemChange} />
+          <input  type="text" placeholder='Create a new todo...' value={todoItem} className={`${darkTheme ? darkInput : lightInput} text-xs md:text-lg focus:outline-none`} onChange={handleTodoItemChange} />
         </form>
         <div className={`w-full rounded-md overflow-hidden text-xs md:text-lg ${darkTheme ? darkDivider : lightDivider} divide-y-1`}>
           <ul className={`${darkTheme ? darkDivider : lightDivider} divide-y-1`}>
